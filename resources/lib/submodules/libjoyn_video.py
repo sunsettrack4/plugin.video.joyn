@@ -62,7 +62,7 @@ def get_mpd_parser(url, stream_type='VOD', video_id=None):
 		toplevel_base_url = mpdparser.get_toplevel_base_url()
 		if xbmc_helper().get_bool_setting('fixup_vod') is True and stream_type == 'VOD' and toplevel_base_url is not None:
 			if toplevel_base_url.startswith('http'):
-				new_mpd_url = compat._format('{}.mpd?filter=', toplevel_base_url)
+				new_mpd_url = compat._format('{}.mpd?filter={}', toplevel_base_url, CONST.get('MPD_FILTER'))
 				xbmc_helper().log_debug('Try to force new MPD with URL: {}', new_mpd_url)
 				try:
 					_mpdparser = mpd_parser(new_mpd_url, lib_joyn().config)
