@@ -138,11 +138,10 @@ def create_config(cached_config, addon_version):
 				mainfest_js = request_helper.get_url(match, config)
 				for manifest_match in findall('(static.*?chunks.*?\.js)', mainfest_js):
 					js_src = manifest_match.encode().decode('unicode-escape')
-					if js_src.find('-') == -1 and js_src.find(',') == -1:
+					if js_src.find('[') == -1 and js_src.find(']') == -1:
 						try:
-							chunks_src = compat._format('{}://{}{}/{}', parsed_preload_js_url.scheme, parsed_preload_js_url.netloc,
-							                            '/'.join(parsed_preload_js_url.path.split('/')[:-1]),
-							                            js_src.split('/')[-1])
+							chunks_src = compat._format('{}://{}{}{}', parsed_preload_js_url.scheme, parsed_preload_js_url.netloc,
+							                            parsed_preload_js_url.path.split(js_src.split('/')[0])[0], js_src)
 							chunks_js = request_helper.get_url(chunks_src, config)
 							for config_key, config_regex in CONST.get('CHUNKS_JS_CONFIGS').items():
 								matches = findall(config_regex, chunks_js)
