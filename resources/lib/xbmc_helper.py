@@ -14,7 +14,7 @@ from . import compat as compat
 from .const import CONST
 
 if compat.PY2:
-	from xbmc import LOGNOTICE
+	from xbmc import translatePath, LOGNOTICE
 	from urlparse import parse_qs
 	try:
 		from simplejson import loads, dumps
@@ -23,6 +23,7 @@ if compat.PY2:
 
 elif compat.PY3:
 	from xbmc import LOGINFO as LOGNOTICE
+	from xbmcvfs import translatePath
 	from urllib.parse import parse_qs
 	from json import loads, dumps
 
