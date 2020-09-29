@@ -5,7 +5,7 @@ from distutils.version import LooseVersion
 from io import open as io_open
 from datetime import datetime, timedelta
 from xbmc import translatePath, executeJSONRPC, executebuiltin, getCondVisibility, getInfoLabel, getSkinDir, log, \
-    sleep as xbmc_sleep, LOGERROR, LOGDEBUG, LOGNOTICE
+    sleep as xbmc_sleep, LOGERROR, LOGDEBUG
 from xbmcplugin import setContent, endOfDirectory, addDirectoryItems, setPluginCategory
 from xbmcvfs import mkdirs, exists, listdir, delete
 from xbmcgui import Dialog, NOTIFICATION_ERROR
@@ -14,6 +14,7 @@ from . import compat as compat
 from .const import CONST
 
 if compat.PY2:
+	from xbmc import LOGNOTICE
 	from urlparse import parse_qs
 	try:
 		from simplejson import loads, dumps
@@ -21,6 +22,7 @@ if compat.PY2:
 		from json import loads, dumps
 
 elif compat.PY3:
+	from xbmc import LOGINFO as LOGNOTICE
 	from urllib.parse import parse_qs
 	from json import loads, dumps
 
