@@ -212,6 +212,7 @@ def get_video_client_data(asset_id, stream_type, asset_data={}):
 	        'genre': [],
 	        'startTime': 0,
 	        'videoId': None,
+	        'npa': False
 	}
 
 	if stream_type == 'VOD':
