@@ -128,3 +128,5 @@ replaced LOGNOTICE with LOGINFO for kodi matrix
 v2.3.3
 import translatePath from xbmcvfs for kodi matrix
 fixed init config
+v2.3.4
+improved 'clientData' for retrieving the manifest
