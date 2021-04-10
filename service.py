@@ -6,6 +6,8 @@ from resources.lib.lib_joyn import lib_joyn
 
 
 class service_monitor(xbmc_Monitor):
+
+
 	def __init__(self, player):
 		from xbmcaddon import Addon
 
@@ -18,6 +20,7 @@ class service_monitor(xbmc_Monitor):
 		self.addon_path = 'plugin://' + Addon().getAddonInfo('id')
 		xbmc_helper().set_addon(Addon())
 		xbmc_Monitor.__init__(self)
+
 
 	def onNotification(self, sender, method, data):
 		if method == 'Player.OnPlay':
@@ -61,6 +64,7 @@ class service_monitor(xbmc_Monitor):
 
 			self.reset_tracking()
 
+
 	def track_position(self):
 
 		if self.player.isPlayingVideo():
@@ -75,6 +79,7 @@ class service_monitor(xbmc_Monitor):
 			except Exception as e:
 				xbmc_helper().log_debug('Exception when trying to set last_tracked_position: {}', e)
 				pass
+
 
 	def reset_tracking(self):
 		self.start_tracking = False

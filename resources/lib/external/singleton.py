@@ -10,6 +10,7 @@ class _Singleton(type):
 	""" A metaclass that creates a Singleton base class when called. """
 	_instances = {}
 
+
 	def __call__(cls, *args, **kwargs):
 		_handle = -1 if len(argv) < 2 else int(argv[1])
 
@@ -22,5 +23,5 @@ class _Singleton(type):
 		return cls._instances[_handle][cls]
 
 
-class Singleton(_Singleton('SingletonMeta', (object, ), {})):
+class Singleton(_Singleton('SingletonMeta', (object,), {})):
 	pass
