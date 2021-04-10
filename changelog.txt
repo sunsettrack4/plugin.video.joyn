@@ -130,3 +130,5 @@ import translatePath from xbmcvfs for kodi matrix
 fixed init config
 v2.3.4
 improved 'clientData' for retrieving the manifest
+v2.3.5
+fixed url error when init config
