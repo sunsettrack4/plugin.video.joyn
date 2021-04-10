@@ -28,6 +28,8 @@ elif compat.PY3:
 
 
 class lib_joyn(Singleton):
+
+
 	def __init__(self):
 		xbmc_helper().log_debug('libjoyn init')
 		self.default_icon = xbmc_helper().get_addon().getAddonInfo('icon')
@@ -40,12 +42,14 @@ class lib_joyn(Singleton):
 		self.epg_cache = None
 		self.node = None
 
+
 	def get_node(self):
 
 		if self.node is None:
 			from .submodules.libjoyn_auth import get_node_value
 			self.node = get_node_value()
 		return self.node
+
 
 	def get_epg(self, first=30, use_cache=True):
 
@@ -102,6 +106,7 @@ class lib_joyn(Singleton):
 
 		return epg_data
 
+
 	def get_landingpage(self):
 
 		if self.landingpage is None:
@@ -118,6 +123,7 @@ class lib_joyn(Singleton):
 				self.landingpage = landingpage
 
 		return self.landingpage
+
 
 	def get_account_info(self, force_refresh=False):
 
@@ -137,17 +143,20 @@ class lib_joyn(Singleton):
 
 			return account_info
 
+
 	def get_account_state(self):
 
 		if self.get_auth_token().get('has_account', False) is not False:
 			return self.get_account_info().get('me', {}).get('state', 'R_A')
 		return False
 
+
 	def get_account_subscription_config(self, subscription_type):
 
 		if self.get_auth_token().get('has_account', False) is not False:
 			return self.get_account_info().get('me', {}).get('subscriptionConfig', {}).get(subscription_type, False)
 		return False
+
 
 	def get_license_filter(self, default='ALL'):
 
@@ -156,6 +165,7 @@ class lib_joyn(Singleton):
 				if self.get_account_subscription_config(license_filter_cond) is False:
 					return license_filter_value
 		return default
+
 
 	def check_license(self, asset_data, respect_setting=True):
 
@@ -195,6 +205,7 @@ class lib_joyn(Singleton):
 			return False
 		else:
 			return True
+
 
 	def get_uepg_data(self, pluginurl):
 
@@ -262,6 +273,7 @@ class lib_joyn(Singleton):
 				uEPG_data.append(uEPG_channel)
 
 		return uEPG_data
+
 
 	def get_graphql_response(self, operation, variables={}, retry_count=0, force_refresh_auth=False, force_cache=False):
 
@@ -371,6 +383,7 @@ class lib_joyn(Singleton):
 				)
 				exit(0)
 
+
 	def get_client_ids(self, username=None, password=None):
 
 		from .submodules.libjoyn_auth import get_device_uuid
@@ -393,6 +406,7 @@ class lib_joyn(Singleton):
 			})
 
 		return client_id_data
+
 
 	def get_auth_token(self,
 	                   username=None,
@@ -645,6 +659,7 @@ class lib_joyn(Singleton):
 
 		return self.auth_token_data
 
+
 	def get_access_token(self, force_refresh=False):
 		_auth_token = self.get_auth_token(force_refresh=force_refresh)
 		if _auth_token is not None:
@@ -652,6 +667,7 @@ class lib_joyn(Singleton):
 		else:
 			xbmc_helper().log_notice("Failed to get auth token")
 			return None
+
 
 	def add_user_agent_http_header(self, uri):
 
@@ -661,6 +677,7 @@ class lib_joyn(Singleton):
 			uri = compat._format('{}|{}', uri, self.user_agent_http_header)
 
 		return uri
+
 
 	@staticmethod
 	def get_metadata(data, query_type, title_type_id=None):
@@ -805,6 +822,7 @@ class lib_joyn(Singleton):
 
 		return metadata
 
+
 	@staticmethod
 	def get_epg_metadata(brand_livestream_epg):
 
@@ -847,6 +865,7 @@ class lib_joyn(Singleton):
 				break
 
 		return epg_metadata
+
 
 	@staticmethod
 	def get_config():

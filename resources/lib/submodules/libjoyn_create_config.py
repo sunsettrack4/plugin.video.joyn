@@ -12,9 +12,9 @@ from .. import cache
 from .. import request_helper
 
 if compat.PY2:
-	from urlparse import urlparse
+	from urlparse import urlparse, urljoin
 elif compat.PY3:
-	from urllib.parse import urlparse
+	from urllib.parse import urlparse, urljoin
 
 
 def create_config(cached_config, addon_version):
@@ -109,6 +109,8 @@ def create_config(cached_config, addon_version):
 	parsed_preload_js_url = None
 	for preload_js_url in findall('<link rel="preload" href="(.*?\.js)" as="script"/>', html_content):
 		try:
+			if not preload_js_url.startswith('http'):
+				preload_js_url = urljoin(CONST['BASE_URL'], preload_js_url)
 			if parsed_preload_js_url is None:
 				parsed_preload_js_url = urlparse(preload_js_url)
 			preload_js = request_helper.get_url(preload_js_url, config)
@@ -135,6 +137,8 @@ def create_config(cached_config, addon_version):
 		do_break = False
 		for match in findall('<script src="(.*?\.js)" async=""></script>', html_content):
 			if match.find('buildManifest') != -1:
+				if not match.startswith('http'):
+					match = urljoin(CONST['BASE_URL'], match)
 				mainfest_js = request_helper.get_url(match, config)
 				for manifest_match in findall('(static.*?chunks.*?\.js)', mainfest_js):
 					js_src = manifest_match.encode().decode('unicode-escape')

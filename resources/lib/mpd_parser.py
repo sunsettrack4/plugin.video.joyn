@@ -15,6 +15,8 @@ elif compat.PY3:
 
 
 class mpd_parser(object):
+
+
 	def __init__(self, url, config):
 
 		self.mpd_url = None
@@ -57,6 +59,7 @@ class mpd_parser(object):
 
 		raise ValueError(compat._format('{} could not by parsed as an valid MPD', url))
 
+
 	def set_content_protection_props(self):
 
 		res_widevine = self.query(compat._format('ContentProtection[@schemeIdUri="urn:uuid:{}"]', self.cp_urn_widevine),
@@ -75,6 +78,7 @@ class mpd_parser(object):
 			self.supports_widevine = True
 		if isinstance(res_playready, list) and len(res_playready) > 0:
 			self.supports_playready = True
+
 
 	def query(self, query_path, find_all=False, anywhere=False):
 
@@ -100,6 +104,7 @@ class mpd_parser(object):
 
 		return None
 
+
 	def query_node_value(self, query_path):
 
 		query_element = self.query(query_path)
@@ -107,9 +112,11 @@ class mpd_parser(object):
 			return query_element.text
 		return None
 
+
 	def get_toplevel_base_url(self):
 
 		return self.query_node_value(['BaseURL'])
+
 
 	@staticmethod
 	def get_attrib(element, attribute_name):
@@ -117,6 +124,7 @@ class mpd_parser(object):
 		if isinstance(element, ET.Element):
 			return element.attrib.get(attribute_name, None)
 		return None
+
 
 	def get_timeshift_buffer_secs(self):
 		timeshift_buffer = mpd_parser.get_attrib(self.mpd_tree, 'timeShiftBufferDepth')
@@ -126,6 +134,7 @@ class mpd_parser(object):
 			if matches is not None and len(matches.groups()) == 1:
 				return int(matches.group(1))
 		return None
+
 
 	def set_local_path(self, video_id):
 

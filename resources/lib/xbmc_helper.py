@@ -4,7 +4,7 @@ import os.path
 from distutils.version import LooseVersion
 from io import open as io_open
 from datetime import datetime, timedelta
-from xbmc import translatePath, executeJSONRPC, executebuiltin, getCondVisibility, getInfoLabel, getSkinDir, log, \
+from xbmc import executeJSONRPC, executebuiltin, getCondVisibility, getInfoLabel, getSkinDir, log, \
     sleep as xbmc_sleep, LOGERROR, LOGDEBUG
 from xbmcplugin import setContent, endOfDirectory, addDirectoryItems, setPluginCategory
 from xbmcvfs import mkdirs, exists, listdir, delete
@@ -29,6 +29,8 @@ elif compat.PY3:
 
 
 class xbmc_helper(Singleton):
+
+
 	def __init__(self):
 		self.addon = None
 		self.addon_version = None
@@ -61,8 +63,10 @@ class xbmc_helper(Singleton):
 			self.log_notice('Could not detect xbmc version version: {}', e)
 			pass
 
+
 	def __del__(self):
 		self.addon = None
+
 
 	def get_addon(self):
 
@@ -72,8 +76,10 @@ class xbmc_helper(Singleton):
 
 		return self.addon
 
+
 	def set_addon(self, addon):
 		self.addon = addon
+
 
 	def get_file_path(self, directory, filename):
 
@@ -85,12 +91,15 @@ class xbmc_helper(Singleton):
 
 		return translatePath(os.path.join(xbmc_directory, filename)).encode('utf-8').decode('utf-8')
 
+
 	def get_resource_filepath(self, filename, subdir):
 		return translatePath(os.path.join(self.get_addon().getAddonInfo('path'), 'resources', subdir,
 		                                  filename)).encode('utf-8').decode('utf-8')
 
+
 	def get_media_filepath(self, filename):
 		return self.get_resource_filepath(filename, 'media')
+
 
 	def remove_dir(self, directory):
 
@@ -111,6 +120,7 @@ class xbmc_helper(Singleton):
 
 		return remove_ok == 1
 
+
 	def json_rpc(self, method, params, id='1'):
 		try:
 			rpc_cmd = {'jsonrpc': '2.0', 'method': method, 'params': params, 'id': id}
@@ -126,16 +136,20 @@ class xbmc_helper(Singleton):
 			self.log_error('Failed to execute json rpc command: {} with exception: {}', rpc_cmd, e)
 			pass
 
+
 	def addon_enabled(self, addon_id):
 
 		rpc_res = self.json_rpc(method='Addons.GetAddonDetails', params={'addonid': addon_id, "properties": ["enabled"]})
 		return rpc_res is not None and rpc_res.get('addon', {}).get('enabled') is True
 
+
 	def get_setting(self, setting_id):
 		return self.get_addon().getSetting(setting_id)
 
+
 	def get_bool_setting(self, setting_id):
 		return self.get_setting(setting_id) == 'true'
+
 
 	def get_int_setting(self, setting_id):
 		setting_val = self.get_setting(setting_id)
@@ -144,14 +158,17 @@ class xbmc_helper(Singleton):
 		else:
 			return None
 
+
 	def get_text_setting(self, setting_id):
 		return str(self.get_setting(setting_id))
+
 
 	def get_addon_version(self):
 		if self.addon_version is None:
 			self.addon_version = compat._format('{} - {}', self.get_addon().getAddonInfo('id'), self.get_addon().getAddonInfo('version'))
 
 		return self.addon_version
+
 
 	def notification(self, msg, description, icon=NOTIFICATION_ERROR):
 		if icon == NOTIFICATION_ERROR:
@@ -160,6 +177,7 @@ class xbmc_helper(Singleton):
 			time = 3000
 
 		return Dialog().notification(msg, description, icon, time)
+
 
 	def dialog(self, msg, msg_line2=None, msg_line3=None, header_appendix=None, open_settings_on_ok=False):
 		if header_appendix is not None:
@@ -173,6 +191,7 @@ class xbmc_helper(Singleton):
 			self.get_addon().openSettings()
 
 		return ret
+
 
 	def dialog_action(self,
 	                  msg,
@@ -202,8 +221,10 @@ class xbmc_helper(Singleton):
 		elif cancel_addon_parameters is not None:
 			executebuiltin(compat._format('RunPlugin(plugin://{}?{})', self.get_addon().getAddonInfo('id'), cancel_addon_parameters))
 
+
 	def dialog_id(self, id):
 		return self.dialog(self.translation(id))
+
 
 	@staticmethod
 	def dialog_msg(msg, msg_line2=None, msg_line3=None):
@@ -214,6 +235,7 @@ class xbmc_helper(Singleton):
 			_msg = compat._format('{}[CR]{}', _msg, msg_line3)
 
 		return _msg
+
 
 	def set_folder(self, list_items, pluginurl, pluginhandle, pluginquery, folder_type, title=None):
 
@@ -262,6 +284,7 @@ class xbmc_helper(Singleton):
 			# wait for the correct postion to be applied; max 500 msecs
 			self.wait_for_infolabel('Container.CurrentItem', old_postion, cycles=100)
 
+
 	def set_folder_sort(self, folder_sort_def):
 
 		order = self.get_setting(folder_sort_def['setting_id'])
@@ -278,6 +301,7 @@ class xbmc_helper(Singleton):
 			              or str(getCondVisibility('Container.SortDirection(descending)')) == '1')):
 				self.log_debug('Toggle sort')
 				executebuiltin('Container.SetSortDirection')
+
 
 	def set_view_mode(self, setting_id):
 
@@ -296,6 +320,7 @@ class xbmc_helper(Singleton):
 				executebuiltin(compat._format('Container.SetViewMode({})', viewmode))
 				self.wait_for_infolabel('Container.Viewmode', setting_val)
 
+
 	def wait_for_infolabel(self, label_name, expected_value, sleep_msecs=5, cycles=1000):
 
 		# sadly it's necessary to wait until kodi has the new Container infolabel ...
@@ -312,11 +337,14 @@ class xbmc_helper(Singleton):
 		self.log_debug('wait_for_infolabel {}: msecs waited: {} values do match {} final value {}', label_name,
 		               (counter * sleep_msecs), (expected_value == label_value), label_value)
 
+
 	def log_error(self, format, *args):
 		self._log(compat._format(format, *args), LOGERROR)
 
+
 	def log_notice(self, format, *args):
 		self._log(compat._format(format, *args), LOGNOTICE)
+
 
 	def log_debug(self, format, *args):
 		if self.get_bool_setting('debug_mode') is True:
@@ -324,15 +352,19 @@ class xbmc_helper(Singleton):
 		elif self.kodi_debug is True:
 			self._log(compat._format(format, *args), LOGDEBUG)
 
+
 	def _log(self, msg, level=LOGNOTICE):
 		log(compat._encode(compat._format('[{}] {}', self.get_addon_version(), msg)), level)
+
 
 	def translation(self, id):
 		return compat._encode(self.get_addon().getLocalizedString(CONST['MSG_IDS'][id]))
 
+
 	def get_addon_params(self, pluginquery):
 		self.addon_params = dict((k, v if len(v) > 1 else v[0]) for k, v in parse_qs(pluginquery[1:]).items())
 		return self.addon_params
+
 
 	def get_file_contents(self, file_path):
 		data = None
@@ -341,9 +373,11 @@ class xbmc_helper(Singleton):
 				data = data_infile.read()
 		return data
 
+
 	def get_data(self, filename, dir_type='DATA_DIR'):
 		data_file_path = self.get_file_path(CONST[dir_type], filename)
 		return self.get_file_contents(data_file_path)
+
 
 	def set_data(self, filename, data, dir_type='DATA_DIR'):
 		data_file_path = self.get_file_path(CONST[dir_type], filename)
@@ -353,10 +387,12 @@ class xbmc_helper(Singleton):
 
 		return data_file_path
 
+
 	def del_data(self, filename, dir_type='DATA_DIR'):
 		data_file_path = self.get_file_path(CONST[dir_type], filename)
 		if os.path.exists(data_file_path):
 			delete(data_file_path)
+
 
 	def get_json_data(self, filename, dir_type='DATA_DIR'):
 		data = self.get_data(filename, dir_type)
@@ -370,8 +406,10 @@ class xbmc_helper(Singleton):
 
 		return data
 
+
 	def set_json_data(self, filename, data, dir_type='DATA_DIR'):
 		return self.set_data(filename, dumps(data), dir_type)
+
 
 	def timestamp_to_datetime(self, timestamp, is_utc=False):
 		try:
@@ -389,6 +427,7 @@ class xbmc_helper(Singleton):
 			pass
 
 		return False
+
 
 	def get_android_prop(self, key, exact_match=False):
 

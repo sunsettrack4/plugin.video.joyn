@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
 CONST = {
-        'BASE_URL'   : 'https://www.joyn.de',
-        'PSF_CONFIG_URL' : 'https://psf.player.v0.maxdome.cloud/config/psf.json',
-        'PSF_URL'  : 'https://psf.player.v0.maxdome.cloud/dist/playback-source-fetcher.min.js',
-        'ENTITLEMENT_URL' : 'entitlement-token',
-        'IP_API_URL'  : 'http://ip-api.com/json?lang={:s}&fields=status,country,countryCode',
-        'AUTH_URL'  : 'https://auth.joyn.de/auth',
-        'AUTH_ANON'  : '/anonymous',
-        'AUTH_REFRESH'  : '/refresh',
-        'AUTH_LOGIN'  : '/login',
-        'AUTH_LOGOUT'  : '/logout',
+        'BASE_URL': 'https://www.joyn.de',
+        'PSF_CONFIG_URL': 'https://psf.player.v0.maxdome.cloud/config/psf.json',
+        'PSF_URL': 'https://psf.player.v0.maxdome.cloud/dist/playback-source-fetcher.min.js',
+        'ENTITLEMENT_URL': 'entitlement-token',
+        'IP_API_URL': 'http://ip-api.com/json?lang={:s}&fields=status,country,countryCode',
+        'AUTH_URL': 'https://auth.joyn.de/auth',
+        'AUTH_ANON': '/anonymous',
+        'AUTH_REFRESH': '/refresh',
+        'AUTH_LOGIN': '/login',
+        'AUTH_LOGOUT': '/logout',
         'SSO_AUTH_URL': 'https://auth.joyn.de/sso/endpoints',
         'OAUTH_URL': 'https://www.joyn.de/oauth',
-        'CLIENT_NAMES'  : ['web', 'ios', 'android'],
-        'EDGE_UA': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134',
+        'CLIENT_NAMES': ['web', 'ios', 'android'],
+        'EDGE_UA': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36',
         'JOYN_CLIENT_VERSION': '2.3.5',
         'MAX_VIDEO_TRIES': 5,
         'MPD_FILTER': '%28type%3D%3D%22video%22%29%7C%7C%28true%29',
@@ -30,114 +30,114 @@ CONST = {
         'CHUNKS_JS_CONFIGS': {
             'PLAYERCONFIG_URL': 'https://playerconfig.*?.json',
         },
-        'COUNTRIES'  : {
-      'DE' : {
-       'language'    : 'de',
-       'setting_id'  : '1',
+        'COUNTRIES': {
+      'DE': {
+       'language': 'de',
+       'setting_id': '1',
       },
       },
 
-        'CACHE_DIR'  : 'cache',
-        'TEMP_DIR'  : 'tmp',
-        'DATA_DIR'  : 'data',
-        'CACHE'   : {
-     'CONFIG' : { 'key' : 'config', 'expires' : 432000 },
-     'EPG'  : { 'key' : 'epg', 'expires': 36000 },
-     'ETAGS'  : { 'key' : 'etags', 'expires': None},
-     'ACCOUNT_INFO' : { 'key' : 'account_info', 'expires': 36000}
+        'CACHE_DIR': 'cache',
+        'TEMP_DIR': 'tmp',
+        'DATA_DIR': 'data',
+        'CACHE': {
+     'CONFIG': { 'key': 'config', 'expires': 432000 },
+     'EPG': { 'key': 'epg', 'expires': 36000 },
+     'ETAGS': { 'key': 'etags', 'expires': None},
+     'ACCOUNT_INFO': { 'key': 'account_info', 'expires': 36000}
       },
 
-        'CACHE_FILES_KEEP' : ['config.json'],
+        'CACHE_FILES_KEEP': ['config.json'],
 
-        'ETAGS_TTL'  : 1209600, #14 days
+        'ETAGS_TTL': 1209600,  # 14 days
 
-        'LASTSEEN_ITEM_COUNT' : 20,
-        'UEPG_REFRESH_INTERVAL' : 7200,
-        'UEPG_ROWCOUNT'  : 5,
-        'INPUTSTREAM_ADDON' : 'inputstream.adaptive',
+        'LASTSEEN_ITEM_COUNT': 20,
+        'UEPG_REFRESH_INTERVAL': 7200,
+        'UEPG_ROWCOUNT': 5,
+        'INPUTSTREAM_ADDON': 'inputstream.adaptive',
 
-        'MSG_IDS'  : {
-     'ADD_TO_WATCHLIST'  : 30651,
-     'ADD_TO_WATCHLIST_PRX'  : 30653,
-     'REMOVE_FROM_WATCHLIST'  : 30652,
-     'REMOVE_FROM_WATCHLIST_PRFX' : 30654,
-     'MEDIA_LIBRARY'   : 30622,
-     'CATEGORY'   : 30623,
-     'TV_SHOW'   : 30624,
-     'SEASON'   : 30625,
-     'EPISODE'   : 30625,
-     'WATCHLIST'   : 30601,
-     'MEDIA_LIBRARIES'  : 30602,
-     'CATEGORIES'   : 30603,
-     'SEARCH'   : 30604,
-     'LIVE_TV'   : 30605,
-     'TV_GUIDE'   : 30606,
-     'MEDIA_LIBRARIES_PLOT'  : 30608,
-     'CATEGORIES_PLOT'  : 30609,
-     'WATCHLIST_PLOT'  : 30607,
-     'SEARCH_PLOT'   : 30610,
-     'LIVE_TV_PLOT'   : 30611,
-     'TV_GUIDE_PLOT'   : 30612,
-     'WL_TYPE_ADDED'   : 30526,
-     'WL_TYPE_REMOVED'  : 30527,
-     'MSG_INPUSTREAM_NOT_ENABLED' : 30501,
-     'MSG_WIDEVINE_NOT_FOUND' : 30502,
-     'MSG_NO_SEARCH_RESULTS'  : 30525,
-     'MSG_NO_FAVS_YET'  : 30528,
-     'MSG_FAVS_UNAVAILABLE'  : 30529,
-     'ERROR'    : 30521,
-     'MSG_ERR_TRY_AGAIN'  : 30522,
-     'MSG_ERROR_CONFIG_DECRYPTION' : 30523,
-     'MSG_ERROR_NO_VIDEOSTEAM'    : 30524,
-     'LIVETV_TITLE'   : 30655,
-     'LIVETV_UNTIL'   : 30656,
-     'LIVETV_UNTIL_AND_NEXT'  : 30657,
-     'MIN_AGE'   : 30658,
-     'VIDEO_AVAILABLE'  : 30650,
-     'SEASON_NO'   : 30621,
-     'MSG_CONFIG_VALUES_INCOMPLETE' : 30530,
-     'MSG_NO_ACCESS_TO_URL'  : 30531,
-     'MSG_COUNTRY_NOT_DETECTED' : 30532,
-     'MSG_COUNTRY_INVALID'  : 30533,
-     'CANCEL'   : 30503,
-     'OPEN_ADDON_SETTINGS'  : 30504,
-     'CACHE_WAS_CLEARED'  : 30659,
-     'CACHE_COULD_NOT_BE_CLEARED' : 30660,
-     'LANG_CODE'   : 30661,
-     'MSG_VIDEO_UNAVAILABLE'         : 30662,
-     'MSG_GAPHQL_ERROR'              : 30663,
-     'MSG_NO_CONTENT'  : 30664,
-     'CONTINUE_WATCHING'  : 30665,
-     'RECOMMENDATION'  : 30666,
-     'MOVIE'    : 30667,
-     'SERIES'   : 30668,
-     'TITLE_LABEL'   : 30669,
-     'LOGGED_IN_LABEL'  : 30670,
-     'LOGIN_FAILED_LABEL'  : 30671,
-     'ACCOUNT_INFO_LABEL'  : 30672,
-     'YES_LABEL'   : 30673,
-     'NO_LABEL'   : 30674,
-     'USERNAME_LABEL'  : 30675,
-     'PASSWORD_LABEL'  : 30676,
-     'MSG_INVALID_EMAIL'  : 30677,
-     'LOGOUT_OK_LABEL'  : 30678,
-     'NOT_LOGGED_IN_LABEL'  : 30679,
-     'LOGOUT_NOK_LABEL'  : 30680,
-     'RETRY'    : 30505,
-     'ACCOUNT'   : 30352,
-     'MSG_RERESH_AUTH_FAILED_RELOG' : 30534,
-     'MSG_RERESH_AUTH_FAILED' : 30535,
-     'CONTINUE_ANONYMOUS'  : 30506,
-     'JOYN_BOOKMARKS'  : 30681,
-     'JOYN_BOOKMARK_LABEL'  : 30682,
-     'MSG_JOYN_BOOKMARK_ADD_SUCC' : 30683,
-     'MSG_JOYN_BOOKMARK_ADD_FAIL' : 30684,
-     'MSG_JOYN_BOOKMARK_DEL_SUCC' : 30685,
-     'MSG_JOYN_BOOKMARK_DEL_FAIL' : 30686,
-     'ADD_TO_JOYN_BOOKMARKS_LABEL' : 30687,
-     'DEL_FROM_JOYN_BOOKMARKS_LABEL' : 30688,
-     'MPAA_PIN'   : 30689,
-     'MSG_INVALID_MPAA_PIN'  : 30690,
+        'MSG_IDS': {
+     'ADD_TO_WATCHLIST': 30651,
+     'ADD_TO_WATCHLIST_PRX': 30653,
+     'REMOVE_FROM_WATCHLIST': 30652,
+     'REMOVE_FROM_WATCHLIST_PRFX': 30654,
+     'MEDIA_LIBRARY': 30622,
+     'CATEGORY': 30623,
+     'TV_SHOW': 30624,
+     'SEASON': 30625,
+     'EPISODE': 30625,
+     'WATCHLIST': 30601,
+     'MEDIA_LIBRARIES': 30602,
+     'CATEGORIES': 30603,
+     'SEARCH': 30604,
+     'LIVE_TV': 30605,
+     'TV_GUIDE': 30606,
+     'MEDIA_LIBRARIES_PLOT': 30608,
+     'CATEGORIES_PLOT': 30609,
+     'WATCHLIST_PLOT': 30607,
+     'SEARCH_PLOT': 30610,
+     'LIVE_TV_PLOT': 30611,
+     'TV_GUIDE_PLOT': 30612,
+     'WL_TYPE_ADDED': 30526,
+     'WL_TYPE_REMOVED': 30527,
+     'MSG_INPUSTREAM_NOT_ENABLED': 30501,
+     'MSG_WIDEVINE_NOT_FOUND': 30502,
+     'MSG_NO_SEARCH_RESULTS': 30525,
+     'MSG_NO_FAVS_YET': 30528,
+     'MSG_FAVS_UNAVAILABLE': 30529,
+     'ERROR': 30521,
+     'MSG_ERR_TRY_AGAIN': 30522,
+     'MSG_ERROR_CONFIG_DECRYPTION': 30523,
+     'MSG_ERROR_NO_VIDEOSTEAM': 30524,
+     'LIVETV_TITLE': 30655,
+     'LIVETV_UNTIL': 30656,
+     'LIVETV_UNTIL_AND_NEXT': 30657,
+     'MIN_AGE': 30658,
+     'VIDEO_AVAILABLE': 30650,
+     'SEASON_NO': 30621,
+     'MSG_CONFIG_VALUES_INCOMPLETE': 30530,
+     'MSG_NO_ACCESS_TO_URL': 30531,
+     'MSG_COUNTRY_NOT_DETECTED': 30532,
+     'MSG_COUNTRY_INVALID': 30533,
+     'CANCEL': 30503,
+     'OPEN_ADDON_SETTINGS': 30504,
+     'CACHE_WAS_CLEARED': 30659,
+     'CACHE_COULD_NOT_BE_CLEARED': 30660,
+     'LANG_CODE': 30661,
+     'MSG_VIDEO_UNAVAILABLE': 30662,
+     'MSG_GAPHQL_ERROR': 30663,
+     'MSG_NO_CONTENT': 30664,
+     'CONTINUE_WATCHING': 30665,
+     'RECOMMENDATION': 30666,
+     'MOVIE': 30667,
+     'SERIES': 30668,
+     'TITLE_LABEL': 30669,
+     'LOGGED_IN_LABEL': 30670,
+     'LOGIN_FAILED_LABEL': 30671,
+     'ACCOUNT_INFO_LABEL': 30672,
+     'YES_LABEL': 30673,
+     'NO_LABEL': 30674,
+     'USERNAME_LABEL': 30675,
+     'PASSWORD_LABEL': 30676,
+     'MSG_INVALID_EMAIL': 30677,
+     'LOGOUT_OK_LABEL': 30678,
+     'NOT_LOGGED_IN_LABEL': 30679,
+     'LOGOUT_NOK_LABEL': 30680,
+     'RETRY': 30505,
+     'ACCOUNT': 30352,
+     'MSG_RERESH_AUTH_FAILED_RELOG': 30534,
+     'MSG_RERESH_AUTH_FAILED': 30535,
+     'CONTINUE_ANONYMOUS': 30506,
+     'JOYN_BOOKMARKS': 30681,
+     'JOYN_BOOKMARK_LABEL': 30682,
+     'MSG_JOYN_BOOKMARK_ADD_SUCC': 30683,
+     'MSG_JOYN_BOOKMARK_ADD_FAIL': 30684,
+     'MSG_JOYN_BOOKMARK_DEL_SUCC': 30685,
+     'MSG_JOYN_BOOKMARK_DEL_FAIL': 30686,
+     'ADD_TO_JOYN_BOOKMARKS_LABEL': 30687,
+     'DEL_FROM_JOYN_BOOKMARKS_LABEL': 30688,
+     'MPAA_PIN': 30689,
+     'MSG_INVALID_MPAA_PIN': 30690,
      'PLUS_HIGHLIGHT_LABEL': 30691,
      'MSG_INVALID_PASSWORD': 30692,
      'NO_INFORMATION_AVAILABLE': 30693,
@@ -147,37 +147,37 @@ CONST = {
      'DESCENDING_LABEL': 30696,
     },
 
-        'VIEW_MODES'  : {
-     'Standard' :  {
-        'skin.estuary' : '0',
+        'VIEW_MODES': {
+     'Standard': {
+        'skin.estuary': '0',
          },
-     'List'  : {
-        'skin.estuary' : '50',
+     'List': {
+        'skin.estuary': '50',
          },
-     'Poster' : {
-        'skin.estuary' : '51',
+     'Poster': {
+        'skin.estuary': '51',
          },
-     'IconWall' : {
-        'skin.estuary' : '52',
+     'IconWall': {
+        'skin.estuary': '52',
          },
 
-     'Shift'  : {
-        'skin.estuary' : '53',
+     'Shift': {
+        'skin.estuary': '53',
          },
-     'InfoWall' : {
-        'skin.estuary' : '54',
+     'InfoWall': {
+        'skin.estuary': '54',
          },
-     'WideList' : {
-        'skin.estuary' : '55',
+     'WideList': {
+        'skin.estuary': '55',
          },
-     'Wall'  : {
-        'skin.estuary' : '500',
+     'Wall': {
+        'skin.estuary': '500',
          },
-     'Banner' : {
-        'skin.estuary' : '501',
+     'Banner': {
+        'skin.estuary': '501',
          },
-     'Fanart' : {
-        'skin.estuary' : '502',
+     'Fanart': {
+        'skin.estuary': '502',
          },
 
     },
@@ -198,192 +198,186 @@ CONST = {
             },
         },
     },
-        'FOLDERS'  : {
+        'FOLDERS': {
 
-     'INDEX'  : {
-        'content_type' : 'tags',
-        'view_mode' : 'categories_view',
+     'INDEX': {
+        'content_type': 'tags',
+        'view_mode': 'categories_view',
        },
 
-     'CATEORIES' : {
-        'content_type' : 'tags',
-        'view_mode' : 'categories_view',
-        'cacheable' : True,
+     'CATEORIES': {
+        'content_type': 'tags',
+        'view_mode': 'categories_view',
+        'cacheable': True,
        },
 
-     'MEDIA_LIBS' : {
-        'content_type' : 'tags',
-        'view_mode' : 'categories_view',
-        'cacheable' : True,
+     'MEDIA_LIBS': {
+        'content_type': 'tags',
+        'view_mode': 'categories_view',
+        'cacheable': True,
        },
 
-     'WATCHLIST' : {
-        'content_type' : 'videos',
-        'view_mode' : 'watchlist_view',
+     'WATCHLIST': {
+        'content_type': 'videos',
+        'view_mode': 'watchlist_view',
        },
 
-
-     'CATEGORY' : {
-        'content_type' : 'tvshows',
-        'view_mode' : 'category_view',
-        'cacheable' : True,
+     'CATEGORY': {
+        'content_type': 'tvshows',
+        'view_mode': 'category_view',
+        'cacheable': True,
        },
 
-     'LIVE_TV' : {
-        'content_type' : 'videos',
-        'view_mode' : 'livetv_view',
+     'LIVE_TV': {
+        'content_type': 'videos',
+        'view_mode': 'livetv_view',
        },
 
-     'TV_SHOWS' : {
+     'TV_SHOWS': {
 
-        'content_type' : 'tvshows',
-        'view_mode' : 'tvshow_view',
-        'cacheable' : True,
+        'content_type': 'tvshows',
+        'view_mode': 'tvshow_view',
+        'cacheable': True,
        },
 
-
-     'SEASONS' : {
-        'content_type' : 'seasons',
-        'view_mode' : 'season_view',
-        'sort'  : {
-           'order_type' : '7', #SortByTitle
-           'setting_id' : 'season_order',
+     'SEASONS': {
+        'content_type': 'seasons',
+        'view_mode': 'season_view',
+        'sort': {
+           'order_type': '7',  # SortByTitle
+           'setting_id': 'season_order',
           },
-        'cacheable' : True,
+        'cacheable': True,
        },
 
-     'EPISODES' : {
-        'content_type' : 'episodes',
-        'view_mode' : 'episode_view',
-        'sort'  : {
-           'order_type'  : '23', #SortByEpisodeNumber
-           'setting_id' : 'episode_order',
+     'EPISODES': {
+        'content_type': 'episodes',
+        'view_mode': 'episode_view',
+        'sort': {
+           'order_type': '23',  # SortByEpisodeNumber
+           'setting_id': 'episode_order',
           },
-        'cacheable' : True,
+        'cacheable': True,
 
        },
-
 
    },
 
+        'SETTING_VALS': {
 
-        'SETTING_VALS' : {
-
-   'SORT_ORDER_DEFAULT' : '0',
-   'SORT_ORDER_ASC' : '1',
-   'SORT_ORDER_DESC' : '2',
+   'SORT_ORDER_DEFAULT': '0',
+   'SORT_ORDER_ASC': '1',
+   'SORT_ORDER_DESC': '2',
         },
 
-        'GRAPHQL' : {
+        'GRAPHQL': {
 
-   'API_URL'  : 'https://api.joyn.de/graphql',
+   'API_URL': 'https://api.joyn.de/graphql',
 
-   'REQUIRED_HEADERS' : ['x-api-key', 'joyn-platform'],
+   'REQUIRED_HEADERS': ['x-api-key', 'joyn-platform'],
 
-
-   'STATIC_VARIABLES' : {
+   'STATIC_VARIABLES': {
        'first': 1000,
        'offset': 0,
       },
 
-   'METADATA'  : {
-       'TVCHANNEL' : {
-          'TEXTS' : {'title' : 'title'},
-          'ART' : {'logo' : {
-             'BRAND_LOGO' : {
-              'icon'    : 'profile:nextgen-web-artlogo-183x75',
-              'thumb'   : 'profile:original',
-              'clearlogo' : 'profile:nextgen-web-artlogo-183x75',
+   'METADATA': {
+       'TVCHANNEL': {
+          'TEXTS': {'title': 'title'},
+          'ART': {'logo': {
+             'BRAND_LOGO': {
+              'icon': 'profile:nextgen-web-artlogo-183x75',
+              'thumb': 'profile:original',
+              'clearlogo': 'profile:nextgen-web-artlogo-183x75',
              },
             },
            },
        },
 
-       'TVSHOW' : {
-          'TEXTS' : {'title' : 'title', 'description' : 'plot'},
-          'ART' : {'images' : {
-             'PRIMARY'        : {
-              'thumb'  : 'profile:original'
+       'TVSHOW': {
+          'TEXTS': {'title': 'title', 'description': 'plot'},
+          'ART': {'images': {
+             'PRIMARY': {
+              'thumb': 'profile:original'
               },
-             'ART_LOGO' : {
-              'icon'  : 'profile:nextgen-web-artlogo-183x75',
-              'clearlogo' : 'profile:nextgen-web-artlogo-183x75',
-              'clearart' : 'profile:nextgen-web-artlogo-183x75',
+             'ART_LOGO': {
+              'icon': 'profile:nextgen-web-artlogo-183x75',
+              'clearlogo': 'profile:nextgen-web-artlogo-183x75',
+              'clearart': 'profile:nextgen-web-artlogo-183x75',
               },
-             'HERO_LANDSCAPE' : {
-              'fanart' : 'profile:nextgen-web-herolandscape-1920x',
-              'landscape' : 'profile:nextgen-web-herolandscape-1920x',
+             'HERO_LANDSCAPE': {
+              'fanart': 'profile:nextgen-web-herolandscape-1920x',
+              'landscape': 'profile:nextgen-web-herolandscape-1920x',
               },
-             'HERO_PORTRAIT'  : {
-              'poster' : 'profile:nextgen-webphone-heroportrait-563x',
+             'HERO_PORTRAIT': {
+              'poster': 'profile:nextgen-webphone-heroportrait-563x',
               },
            },
 
           },
        },
 
-       'EPISODE' : {
-          'TEXTS' : {'title': 'title', 'description' : 'plot'},
-          'ART' : {'images' : {
-             'PRIMARY'        : {
-              'thumb'  : 'profile:original'
+       'EPISODE': {
+          'TEXTS': {'title': 'title', 'description': 'plot'},
+          'ART': {'images': {
+             'PRIMARY': {
+              'thumb': 'profile:original'
              },
-             'ART_LOGO'       : {
-              'icon'    : 'profile:nextgen-web-artlogo-183x75',
-              'clearlogo' : 'profile:nextgen-web-artlogo-183x75',
+             'ART_LOGO': {
+              'icon': 'profile:nextgen-web-artlogo-183x75',
+              'clearlogo': 'profile:nextgen-web-artlogo-183x75',
              },
-             'HERO_LANDSCAPE' : {
-              'fanart'  : 'profile:nextgen-web-herolandscape-1920x',
+             'HERO_LANDSCAPE': {
+              'fanart': 'profile:nextgen-web-herolandscape-1920x',
              },
-             'HERO_PORTRAIT'  : {
-              'poster'  : 'profile:nextgen-webphone-heroportrait-563x',
-             },
-           },
-
-          },
-       },
-
-       'EPG' : {
-          'TEXTS' : {'title': 'title', 'secondaryTitle' : 'plot'},
-          'ART' : {'images' : {
-             'LIVE_STILL'        : {
-              'poster' : 'profile:original',
-              'thumb'  : 'profile:original',
+             'HERO_PORTRAIT': {
+              'poster': 'profile:nextgen-webphone-heroportrait-563x',
              },
            },
 
           },
        },
 
+       'EPG': {
+          'TEXTS': {'title': 'title', 'secondaryTitle': 'plot'},
+          'ART': {'images': {
+             'LIVE_STILL': {
+              'poster': 'profile:original',
+              'thumb': 'profile:original',
+             },
+           },
+
+          },
+       },
 
    },
 
-   'GET_BONUS'  : {
-       'QUERY' : '($seriesId: ID!, $first: Int!, $offset: Int!) { series(id: $seriesId) { __typename id ageRating { __typename description minAge '\
+   'GET_BONUS': {
+       'QUERY': '($seriesId: ID!, $first: Int!, $offset: Int!) { series(id: $seriesId) { __typename id ageRating { __typename description minAge '\
         'ratingSystem } extras(first: $first, offset: $offset) { __typename id title video { __typename duration id } images { __typename id '\
         'copyright type url accentColor } tracking { __typename agofCode externalAssetId brand url } } } }',
 
-       'OPERATION' : 'getBonus',
-       'REQUIRED_VARIABLES' : ['seriesId', 'first', 'offset']
+       'OPERATION': 'getBonus',
+       'REQUIRED_VARIABLES': ['seriesId', 'first', 'offset']
       },
 
-   'GET_BRANDS'  : { 'QUERY' : '{ brands { __typename id livestream { __typename id agofCode title quality } logo { __typename accentColor url } hasVodContent title } '\
+   'GET_BRANDS': { 'QUERY': '{ brands { __typename id livestream { __typename id agofCode title quality } logo { __typename accentColor url } hasVodContent title } '\
         '}',
-       'OPERATION' : 'getBrands',
+       'OPERATION': 'getBrands',
    },
 
-   'LANDINGPAGE'  : {
-       'QUERY' : '($path: String!) { page(path: $path) { __typename ... on LandingPage { blocks { __typename id isPersonalized ... on StandardLane { '\
+   'LANDINGPAGE': {
+       'QUERY': '($path: String!) { page(path: $path) { __typename ... on LandingPage { blocks { __typename id isPersonalized ... on StandardLane { '\
         'headline } ... on FeaturedLane { headline } ... on LiveLane { headline } ... on ResumeLane { headline } ... on ChannelLane { headline '\
         '} ... on BookmarkLane { headline } ... on RecoForYouLane { headline } } } } }',
 
-       'OPERATION' : 'LandingPage',
-       'REQUIRED_VARIABLES' : ['path'],
-       'AUTH' : True,
+       'OPERATION': 'LandingPage',
+       'REQUIRED_VARIABLES': ['path'],
+       'AUTH': True,
    },
 
-   'SINGLEBLOCK'  : {
-       'QUERY' : '($blockId: String!, $offset: Int!, $first: Int!) { block(id: $blockId) { __typename id assets(offset: $offset, first: $first) { '\
+   'SINGLEBLOCK': {
+       'QUERY': '($blockId: String!, $offset: Int!, $first: Int!) { block(id: $blockId) { __typename id assets(offset: $offset, first: $first) { '\
         '__typename ...MovieCoverFragment ...SeriesCoverFragment ...BrandCoverFragment ...EpisodeCoverFragment ...EpgFragment '\
         '...CompilationCoverFragment } } } fragment MovieCoverFragment on Movie { __typename id title description ageRating { description label '\
         'minAge ratingSystem } copyright copyrights endsAt genres { id name title type } images { __typename type url } isBookmarked languages '\
@@ -408,14 +402,14 @@ CONST = {
         'description ageRating { description label minAge ratingSystem } copyright copyrights licenseTypes markings images { url type '\
         '__typename } genres { id name title type } numberOfItems languages { code title } }',
 
-       'OPERATION' : 'SingleBlockQuery',
-       'REQUIRED_VARIABLES' : ['blockId', 'offset', 'first'],
+       'OPERATION': 'SingleBlockQuery',
+       'REQUIRED_VARIABLES': ['blockId', 'offset', 'first'],
        'AUTH': True,
        'BOOKMARKS': True,
 
    },
 
-   'CHANNEL'  : {
+   'CHANNEL': {
        'QUERY': '($path: String!, $offset: Int!, $first: Int!) { page(path: $path) { __typename ... on ChannelPage { assets(offset: $offset, first: '\
         '$first) { __typename ...MovieCoverFragment ...SeriesCoverFragment ...EpisodeCoverFragment ...CompilationCoverFragment } } } } fragment '\
         'MovieCoverFragment on Movie { __typename id title description ageRating { description label minAge ratingSystem } copyright copyrights '\
@@ -444,33 +438,33 @@ CONST = {
        'BOOKMARKS': True,
    },
 
-   'SEASONS'  : {
+   'SEASONS': {
        'QUERY': '($seriesId: ID!, $seasonLicenseFilter: LicenseFilter!) { series(id: $seriesId) { __typename id title isBookmarked description '\
         'ageRating { description label minAge ratingSystem } copyright copyrights markings images { url type __typename } licenseTypes genres { '\
         'id name title type } isBingeable numberOfSeasons productionCompanies productionCountries productionYear subtype tagline languages { '\
         'code title } seasons (licenseFilter: $seasonLicenseFilter) { __typename id number numberOfEpisodes title  licenseTypes} } }',
 
        'OPERATION': 'getSeries',
-       'REQUIRED_VARIABLES' : ['seriesId', 'seasonLicenseFilter'],
+       'REQUIRED_VARIABLES': ['seriesId', 'seasonLicenseFilter'],
        'BOOKMARKS': True,
        'AUTH': True,
        'FILTER_LICENSE_TYPES': False,
    },
 
-    'SEASONS_NOLICENSEFILTER'  : {
+    'SEASONS_NOLICENSEFILTER': {
            'QUERY': '($seriesId: ID!) { series(id: $seriesId) { __typename id title isBookmarked description '\
             'ageRating { description label minAge ratingSystem } copyright copyrights markings images { url type __typename } licenseTypes genres { '\
             'id name title type } isBingeable numberOfSeasons productionCompanies productionCountries productionYear subtype tagline languages { '\
             'code title } seasons { __typename id number numberOfEpisodes title licenseTypes } } }',
 
            'OPERATION': 'getSeries',
-           'REQUIRED_VARIABLES' : ['seriesId'],
+           'REQUIRED_VARIABLES': ['seriesId'],
            'BOOKMARKS': True,
            'AUTH': True,
            'FILTER_LICENSE_TYPES': False,
        },
 
-   'EPISODES'  : {
+   'EPISODES': {
        'QUERY': '($seasonId: ID!, $first: Int!, $offset: Int!, $episodeLicenseFilter: LicenseFilter!) { season(id: $seasonId) { __typename id number '\
         'title episodes(first: $first, offset: $offset, licenseFilter: $episodeLicenseFilter) { __typename id airdate ageRating { description '\
         'label minAge ratingSystem } description endsAt genres { id name title type } images { __typename type url } licenseTypes markings '\
@@ -481,14 +475,14 @@ CONST = {
         'description ageRating { description label minAge ratingSystem } copyright copyrights markings images { url type __typename } '\
         'licenseTypes genres { id name title type } isBingeable numberOfSeasons productionCompanies productionCountries productionYear subtype '\
         'tagline languages { code title } } } } }',
-       'OPERATION' : 'getSeason',
-       'REQUIRED_VARIABLES' : ['seasonId', 'first', 'offset', 'episodeLicenseFilter'],
+       'OPERATION': 'getSeason',
+       'REQUIRED_VARIABLES': ['seasonId', 'first', 'offset', 'episodeLicenseFilter'],
        'AUTH': True,
        'BOOKMARKS': True,
-       'FILTER_LICENSE_TYPES' : False,
+       'FILTER_LICENSE_TYPES': False,
    },
 
-    'EPISODES_NOLICENSEFILTER'  : {
+    'EPISODES_NOLICENSEFILTER': {
            'QUERY': '($seasonId: ID!, $first: Int!, $offset: Int!) { season(id: $seasonId) { __typename id number '\
             'title episodes(first: $first, offset: $offset) { __typename id airdate ageRating { description '\
             'label minAge ratingSystem } description endsAt genres { id name title type } images { __typename type url } licenseTypes markings '\
@@ -499,14 +493,14 @@ CONST = {
             'description ageRating { description label minAge ratingSystem } copyright copyrights markings images { url type __typename } '\
             'licenseTypes genres { id name title type } isBingeable numberOfSeasons productionCompanies productionCountries productionYear subtype '\
             'tagline languages { code title } } } } }',
-           'OPERATION' : 'getSeason',
-           'REQUIRED_VARIABLES' : ['seasonId', 'first', 'offset'],
+           'OPERATION': 'getSeason',
+           'REQUIRED_VARIABLES': ['seasonId', 'first', 'offset'],
            'AUTH': True,
            'BOOKMARKS': True,
-           'FILTER_LICENSE_TYPES' : False,
+           'FILTER_LICENSE_TYPES': False,
        },
 
-   'COMPILATION_ITEMS' : {
+   'COMPILATION_ITEMS': {
        'QUERY': '($id: ID!, $offset: Int!, $first: Int!) { compilation(id: $id) { __typename compilationItems(first: $first, offset: $offset) { '\
         '__typename ... on CompilationItem { ...CompilationItemCoverFragment } } } } fragment CompilationItemCoverFragment on CompilationItem { '\
         '__typename id ageRating { description label minAge ratingSystem } description endsAt genres { id name title type } images { __typename '\
@@ -515,8 +509,8 @@ CONST = {
         'deviceRestrictions { deviceClasses maximumResolution } endDate geoRestrictions protectionLevel publishingChannels source startDate '\
         'type } duration markers { end source start type } } compilation { id images { __typename type url } ageRating { description label '\
         'minAge ratingSystem } copyright } }',
-       'OPERATION' : 'GetCompilationItemsQuery',
-       'REQUIRED_VARIABLES' : ['id', 'first', 'offset'],
+       'OPERATION': 'GetCompilationItemsQuery',
+       'REQUIRED_VARIABLES': ['id', 'first', 'offset'],
        'BOOKMARKS': True,
        'AUTH': True,
    },
@@ -524,8 +518,8 @@ CONST = {
    'COMPILATION': {
        'QUERY': '($id: ID!) { compilation(id: $id) { __typename id description images { __typename id type url } genres { __typename name type } title '\
         'ageRating { __typename description minAge ratingSystem } copyrights numberOfItems licenseTypes markings isBookmarked } }',
-       'REQUIRED_VARIABLES' : ['id'],
-        'OPERATION' : 'GetCompilationDetailsQuery',
+       'REQUIRED_VARIABLES': ['id'],
+        'OPERATION': 'GetCompilationDetailsQuery',
         'BOOKMARKS': True,
        'AUTH': True,
    },
@@ -534,7 +528,7 @@ CONST = {
        'QUERY': '($id: ID!) { series(id: $id) { __typename id title isBookmarked description ageRating { description label minAge ratingSystem } '\
         'copyright copyrights markings images { url type __typename } licenseTypes genres { id name title type } isBingeable numberOfSeasons '\
         'productionCompanies productionCountries productionYear subtype tagline languages { code title } }}',
-        'REQUIRED_VARIABLES' : ['id'],
+        'REQUIRED_VARIABLES': ['id'],
         'BOOKMARKS': True,
        'AUTH': True,
    },
@@ -542,10 +536,10 @@ CONST = {
    'BRAND': {
        'QUERY': '($id: Int!) { brand(brandId: $id) { __typename id title hasVodContent livestream { __typename id agofCode title quality } markings logo '\
         '{ url type __typename } path } }',
-        'REQUIRED_VARIABLES' : ['id'],
+        'REQUIRED_VARIABLES': ['id'],
    },
 
-   'EPG'   : {
+   'EPG': {
        'QUERY': '($first: Int!) { brands { __typename id livestream { __typename id title quality epg(first: $first) { __typename id startDate endDate '\
         'title secondaryTitle images { __typename id  type url } } } logo { __typename  url } hasVodContent title } }',
 
@@ -555,7 +549,7 @@ CONST = {
 
    },
 
-   'SEARCH'  : {
+   'SEARCH': {
        'QUERY': '($text: String!) { search(term: $text, first: 50) { __typename results { __typename ...BrandCoverFragment ...SeriesCoverFragment '\
         '...MovieCoverFragment ...CompilationCoverFragment } } } fragment BrandCoverFragment on Brand { __typename id title path logo { '\
         '__typename type accentColor url } livestream { __typename id quality } } fragment SeriesCoverFragment on Series { __typename id title '\
@@ -577,7 +571,7 @@ CONST = {
        'BOOKMARKS': True,
    },
 
-   'ACCOUNT'  : {
+   'ACCOUNT': {
        'QUERY': '{ me { account { id } profile { id email gender birthday avatar { color icon iconURL } } state subscriptions { productId type '\
         'provider { name } state { freeTrialUntil isActive } } subscriptionConfig { hasActivePlus hasActiveHD } } }',
        'OPERATION': 'GetAccountInfoQuery',
@@ -594,21 +588,21 @@ CONST = {
        'NO_CACHE': True,
    },
 
-   'ADD_BOOKMARK'  : {
+   'ADD_BOOKMARK': {
        'QUERY': '($assetId: ID!) {setBookmark(assetId:$assetId) { __typename}}',
        'OPERATION': 'setBookmarkMutation',
-       'REQUIRED_VARIABLES' : ['assetId'],
+       'REQUIRED_VARIABLES': ['assetId'],
        'AUTH': True,
-       'IS_MUTATION' : True,
+       'IS_MUTATION': True,
        'NO_CACHE': True,
    },
 
-   'DEL_BOOKMARK'  : {
+   'DEL_BOOKMARK': {
        'QUERY': '($assetId: ID!) { removeBookmark(assetId:$assetId) }',
        'OPERATION': 'removeBookmarkMutation',
-       'REQUIRED_VARIABLES' : ['assetId'],
+       'REQUIRED_VARIABLES': ['assetId'],
        'AUTH': True,
-       'IS_MUTATION' : True,
+       'IS_MUTATION': True,
        'NO_CACHE': True,
    },
 
@@ -623,6 +617,6 @@ CONST = {
 
         },
 
-        'CATEGORY_LANES'   : ['RecoForYouLane', 'ResumeLane', 'FeaturedLane', 'StandardLane'],
+        'CATEGORY_LANES': ['RecoForYouLane', 'ResumeLane', 'FeaturedLane', 'StandardLane'],
 
 }
