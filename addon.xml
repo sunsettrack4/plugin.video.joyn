@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.joyn" name="Joyn" version="2.3.4" provider-name="knaerzche, Maven">
+<addon id="plugin.video.joyn" name="Joyn" version="2.3.5" provider-name="knaerzche, Maven">
 	<requires>
 		<import addon="inputstream.adaptive" version="2.2.21"/>
 		<import addon="script.module.inputstreamhelper" version="0.3.5"/>
@@ -35,6 +35,8 @@
 			<screenshot>resources/media/screenshot03.jpg</screenshot>
 		</assets>
 		<news>
+v2.3.5
+fixed url error when init config
 v2.3.4
 improved 'clientData' for retrieving the manifest
 v2.3.3
