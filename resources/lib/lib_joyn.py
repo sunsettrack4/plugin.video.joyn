@@ -457,29 +457,43 @@ class lib_joyn(Singleton):
 						                                                   },
 						                                                   cookie_file=cookie_file,
 						                                                   return_final_url=True)
-						csrf_param = None
-						csrf_token = None
-						from re import findall
 
-						for match in findall('<meta name="csrf-(param|token)" content="(.*)" />', login_response):
-							if match[0] == 'param':
-								csrf_param = match[1]
-							elif match[0] == 'token':
-								csrf_token = match[1]
-
-						if csrf_param is None or csrf_token is None:
-							xbmc_helper().log_debug('Failed to find csrf meta tags - trying with hidden field as fallback')
-							for match in findall(' <input type="hidden" name="_csrf_(.*)" value=(.*) />', login_response):
-								csrf_param = compat._format('_csrf_{}', match[0])
-								csrf_token = match[1]
-
+						csrf_param, csrf_token = self.extractCrsf(login_response)
 						if csrf_param is not None and csrf_token is not None:
-
-							login_params = {csrf_param: csrf_token, 'account[email]': username, 'password': password}
-
+							params = {csrf_param: csrf_token, 'account[email]': username, 'remember': 'on'}
 							login_res_url, login_res_response = request_helper.get_url(url=login_url,
 							                                                           config=self.config,
-							                                                           post_data=login_params,
+							                                                           post_data=params,
+							                                                           cookie_file=cookie_file,
+							                                                           return_final_url=True,
+							                                                           no_cache=True)
+
+							csrf_param, csrf_token = self.extractCrsf(login_response)
+
+						if csrf_param is not None and csrf_token is not None:
+							params = {csrf_param: csrf_token, 'account[email]': username, 'password': password}
+							login_res_url, login_res_response = request_helper.get_url(url=login_res_url,
+							                                                           config=self.config,
+							                                                           post_data=params,
+							                                                           cookie_file=cookie_file,
+							                                                           return_final_url=True,
+							                                                           no_cache=True)
+
+							csrf_param, csrf_token = self.extractCrsf(login_response)
+
+						if csrf_param is not None and csrf_token is not None:
+							params = {csrf_param: csrf_token}
+							login_res_url, login_res_response = request_helper.get_url(url=login_res_url,
+							                                                           config=self.config,
+							                                                           post_data=params,
+							                                                           cookie_file=cookie_file,
+							                                                           return_final_url=True,
+							                                                           no_cache=True)
+
+							from re import search as re_search
+							match = re_search('([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})', login_url)
+							login_res_url, login_res_response = request_helper.get_url(url=sso_resp.get('web-login')[:sso_resp.get('web-login').find('?')] + '/' + match.group(1),
+							                                                           config=self.config,
 							                                                           cookie_file=cookie_file,
 							                                                           return_final_url=True,
 							                                                           no_cache=True)
@@ -509,7 +523,7 @@ class lib_joyn(Singleton):
 							                                           no_cache=True,
 							                                           return_json_errors='UNAUTHORIZED')
 
-						else:
+						if csrf_param is None and csrf_token is None:
 							xbmc_helper().log_error("Could not find required csrf login parameters - response was: {} - retrying with legacy login",
 							                        login_response)
 							xbmc_helper().del_data(cookie_file, 'TEMP_DIR')
@@ -900,3 +914,23 @@ class lib_joyn(Singleton):
 			config = create_config(cached_config, addon_version)
 
 		return config
+
+
+	def extractCrsf(self, content):
+		csrf_param = None
+		csrf_token = None
+		from re import findall
+
+		for match in findall('<meta name="csrf-(param|token)" content="(.*)" />', content):
+			if match[0] == 'param':
+				csrf_param = match[1]
+			elif match[0] == 'token':
+				csrf_token = match[1]
+
+		if csrf_param is None or csrf_token is None:
+			xbmc_helper().log_debug('Failed to find csrf meta tags - trying with hidden field as fallback')
+			for match in findall(' <input type="hidden" name="_csrf_(.*)" value=(.*) />', content):
+				csrf_param = compat._format('_csrf_{}', match[0])
+				csrf_token = match[1]
+
+		return csrf_param, csrf_token
