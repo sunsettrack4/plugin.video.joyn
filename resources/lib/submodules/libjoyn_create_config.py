@@ -140,7 +140,9 @@ def create_config(cached_config, addon_version):
 				if not match.startswith('http'):
 					match = urljoin(CONST['BASE_URL'], match)
 				mainfest_js = request_helper.get_url(match, config)
-				for manifest_match in findall('(static.*?chunks.*?\.js)', mainfest_js):
+				for manifest_match in reversed(findall('(static\/chunks.*?\.js)', mainfest_js)):
+					if '[' in manifest_match or ']' in manifest_match:
+						continue
 					js_src = manifest_match.encode().decode('unicode-escape')
 					if js_src.find('[') == -1 and js_src.find(']') == -1:
 						try:
