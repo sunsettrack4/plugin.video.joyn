@@ -132,3 +132,6 @@ v2.3.4
 improved 'clientData' for retrieving the manifest
 v2.3.5
 fixed url error when init config
+v2.3.6
+fixed login
+speedup config init
