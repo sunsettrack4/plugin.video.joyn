@@ -135,3 +135,5 @@ fixed url error when init config
 v2.3.6
 fixed login
 speedup config init
+v2.3.7
+fixed config init
