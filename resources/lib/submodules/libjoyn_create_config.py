@@ -107,7 +107,8 @@ def create_config(cached_config, addon_version):
 	do_break = False
 	found_configs = 0
 	parsed_preload_js_url = None
-	for preload_js_url in findall('<link rel="preload" href="(.*?\.js)" as="script"/>', html_content):
+	preload_scripts = list(reversed(findall('<script.*?src="(.*?\.js)"', html_content)))
+	for preload_js_url in preload_scripts:
 		try:
 			if not preload_js_url.startswith('http'):
 				preload_js_url = urljoin(CONST['BASE_URL'], preload_js_url)
@@ -135,7 +136,7 @@ def create_config(cached_config, addon_version):
 	if use_outdated_cached_config is False:
 		found_configs = 0
 		do_break = False
-		for match in findall('<script src="(.*?\.js)" async=""></script>', html_content):
+		for match in preload_scripts:
 			if match.find('buildManifest') != -1:
 				if not match.startswith('http'):
 					match = urljoin(CONST['BASE_URL'], match)
