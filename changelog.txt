@@ -1,3 +1,5 @@
+2.5.1
+- fixed init error
 2.5.0
 - fixed config init
 - added movies, tv shows and sport section
