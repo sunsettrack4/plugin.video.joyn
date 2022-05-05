@@ -1,3 +1,5 @@
+2.5.6
+- fixed config init and playback
 2.5.5
 - fixed categories in main menu
 2.5.4
