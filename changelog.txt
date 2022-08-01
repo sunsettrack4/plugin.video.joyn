@@ -1,3 +1,6 @@
+2.5.7
+- updated tvshow operation and operation hashes
+- fixed error when content for last seen or favorites is no longer available
 2.5.6
 - fixed config init and playback
 2.5.5
