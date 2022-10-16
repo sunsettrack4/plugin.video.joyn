@@ -418,8 +418,16 @@ class lib_joyn(Singleton):
 				# GET REQUEST ID
 				a = t.get(compat._format("https://auth.joyn.de/sso/endpoints?client_id={}&client_name=web", client_id), headers=h)
 				endpoints = a.json()
-				a = t.get(endpoints["web-login"], allow_redirects=True)
-				request_id = a.url.split("requestId=")[1]
+				b = t.get(endpoints["web-login"], allow_redirects=True)
+				
+				# RETRIEVE IDs
+				id = a.json()["web-login"].split("?")[1].split("&")
+				id_dict_new = dict()
+				for i in id:
+					c = i.split("=")
+					id_dict_new[c[0]] = c[1]
+				
+				request_id = b.url.split("requestId=")[1]
 				h.update({"content-type": "application/json"})
 
 				# CHECK LANG
@@ -438,7 +446,7 @@ class lib_joyn(Singleton):
 				d = compat._format("username={}&requestId={}&password={}", username, request_id, password)
 				a = t.post("https://auth.7pass.de/login-srv/login", headers=h, data=d, allow_redirects=True)
 
-				# RETRIEVE IDs
+				# RETRIEVE IDs (2)
 				xbmc_helper().log_debug('url = {}', a.url)
 				id = a.url.split("?")[1].split("&")
 				id_dict = dict()
@@ -447,25 +455,11 @@ class lib_joyn(Singleton):
 					id_dict[b[0]] = b[1]
 
 				# PREFLIGHTS
-				h.update({"content-type": "application/json"})
-				d = dumps({"sub": id_dict["sub"], "client_id": id_dict["client_id"], "scopes": [{"offline_access": "denied"}]})
-				a = t.post("https://auth.7pass.de/consent-management-srv/consent/scope/accept", data=d, headers=h)
-				a = t.get(compat._format("https://auth.7pass.de/token-srv/prelogin/metadata/{}?acceptLanguage=de-de", id_dict['track_id']))
-
-				# CONTINUE
-				h.update({"content-type": "application/x-www-form-urlencoded"})
-				a = t.post(compat._format("https://auth.7pass.de/login-srv/precheck/continue/{}", id_dict['track_id']), headers=h, data="", allow_redirects=True)
-
-				# RETRIEVE ID PT.2
-				id = a.url.split("?")[1].split("&")
-				id_dict_2 = dict()
-				for i in id:
-					b = i.split("=")
-					id_dict_2[b[0]] = b[1]
+				a = t.get(compat._format("https://auth.7pass.de/token-srv/prelogin/metadata/{}?acceptLanguage=de-de", id_dict['cd1']))
 
 				# GENERATE TOKEN
 				h.update({"content-type": "application/json"})
-				d = dumps({"client_id": id_dict["client_id"], "code": id_dict_2["code"], "code_verifier": "", "redirect_uri": "https://www.joyn.de/oauth", "tracking_id": id_dict["track_id"], "tracking_name": "web"})
+				d = dumps({"client_id": id_dict_new["client_id"], "code": id_dict["code"], "code_verifier": "", "redirect_uri": "https://www.joyn.de/oauth", "tracking_id": id_dict["cd1"], "tracking_name": "web"})
 				a = t.post(endpoints["redeem-token"], headers=h, data=d)
 				auth_token_data = a.json()
 
